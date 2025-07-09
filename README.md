@@ -23,11 +23,19 @@
 ```bash
 git clone https://github.com/hungpptit/ecom-edu-ai.git
 cd ecom-edu-ai
+```  
 
-
-### 1. Cài đặt dependencies
+### 2. Cài đặt dependencies
 
 ```bash
 npm install
 # hoặc nếu bạn dùng yarn:
 # yarn install
+```
+
+### 3. Chạy dự án ở môi trường phát triển
+```bash
+npm run dev
+# hoặc
+# yarn dev
+```
