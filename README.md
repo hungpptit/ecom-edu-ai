@@ -40,8 +40,12 @@ npm run dev
 # yarn dev
 ```
 ## 📌 Ghi chú
-- Chatbot AI hoạt động đơn giản dựa trên từ khóa và danh sách sản phẩm mẫu.
 
-- Dữ liệu sản phẩm hiện đang được mock sẵn (/src/data/products.ts).
+- 🤖 **Chatbot AI** hoạt động đơn giản dựa trên từ khóa và danh sách sản phẩm mẫu.
+- 🗂️ **Dữ liệu sản phẩm** hiện đang được mock sẵn tại: `/src/data/products.ts`.
+- 💾 **Trạng thái ứng dụng** (danh sách yêu thích, lịch sử chat) được lưu hoàn toàn ở client qua
 
-- Tất cả trạng thái (favorites, chat) đang được lưu ở client (LocalStorage / useState).
+  ## 📷 Giao diện demo
+
+<img src="./demo/anh1.png" alt="Chat demo" width="400"/> 
+<img src="./demo/anh2.png" alt="Home preview" width="400"/>
