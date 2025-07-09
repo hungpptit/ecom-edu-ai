@@ -47,7 +47,9 @@ npm run dev
 
   ## 📷 Giao diện demo
 
-<img src="./demo/anh1.png" alt="Chat demo" width="400"/> 
+<p align="center">
+  <img src="./demo/anh1.png" alt="Chat demo" width="400"/>
+</p>
 
 📚 Hiển thị danh sách khóa học: Người dùng có thể xem tất cả các sản phẩm giáo dục dưới dạng thẻ, bao gồm tên khóa học, giá, mô tả ngắn, đánh giá và nút "Xem chi tiết".
 
@@ -57,13 +59,17 @@ npm run dev
 
 ❤️ Lưu khóa học yêu thích: Bấm "Yêu thích" để lưu khóa học vào danh sách yêu thích. Danh sách này được lưu ở LocalStorage và hiển thị tại trang "Yêu thích".
 
-<img src="./demo/anh2.png" alt="Home preview all" width="400"/>
+<p align="center">
+  <img src="./demo/anh2.png" alt="Home preview all" width="400"/>
+</p>
 
 🔍 Lọc theo ngôn ngữ: English, Japanese, French, v.v.
 
 🔎 Tìm kiếm khóa học theo tên hoặc đề xuất phù hợp.
 
-<img src="./demo/anh3.png" alt="Home preview recommend" width="400"/>
+<p align="center">
+  <img src="./demo/anh3.png" alt="Home preview recommend" width="400"/>
+</p>
 
 🔎 Tìm kiếm khóa học phù hợp: Người dùng có thể gõ nội dung mong muốn vào khung chatbot tư vấn sản phẩm (góc dưới bên phải). Dựa trên từ khóa nhập vào, chatbot sẽ gợi ý khóa học tương ứng.
 
@@ -73,7 +79,9 @@ npm run dev
 
 ❤️ Yêu thích sản phẩm: Người dùng có thể bấm thích hoặc bỏ thích ngay trên từng thẻ sản phẩm ngoài trang chính.
 
-<img src="./demo/anh4.png" alt="Home preview favorite" width="400"/>
+<p align="center">
+  <img src="./demo/anh4.png" alt="Home preview favorite" width="400"/>
+</p>
 
 💖 Hiển thị các khóa học người dùng đã "Yêu thích".
 
