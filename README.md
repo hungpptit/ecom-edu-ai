@@ -15,3 +15,19 @@
 - ⚛️ React + TypeScript
 - 💬 Chatbot UI tùy chỉnh
 - 📦 Fake API với dữ liệu mock
+
+## 🧪 Hướng dẫn cài đặt & chạy local
+
+### 1. Clone dự án
+
+```bash
+git clone https://github.com/hungpptit/ecom-edu-ai.git
+cd ecom-edu-ai
+
+
+### 1. Cài đặt dependencies
+
+```bash
+npm install
+# hoặc nếu bạn dùng yarn:
+# yarn install
