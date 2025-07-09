@@ -7,7 +7,7 @@ type ChatMessage = {
   element?: React.ReactNode; 
 };
 const ChatWidget = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
   
   const [messages, setMessages] = useState<ChatMessage[]>([]);

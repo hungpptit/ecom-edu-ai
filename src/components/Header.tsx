@@ -31,7 +31,7 @@ const Header = () => {
                 location.pathname === "/favorites" ? "active" : ""
               }`}
             >
-              ❤️ Yêu thích
+              Yêu thích
             </button>
           </div>
 

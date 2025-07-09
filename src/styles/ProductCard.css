@@ -1,18 +1,111 @@
 .card {
-  border: 1px solid #ddd;
+  position: relative;
+  border: 1px solid #1976d2;
   border-radius: 8px;
   overflow: hidden;
   background: white;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
   transition: transform 0.2s ease;
   height: 100%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
+  
 }
+
+/* Viền đuổi - LED effect */
+.border-line {
+  position: absolute;
+  background: linear-gradient(to right, transparent, #00e5ff, transparent);
+  z-index: 10;
+  pointer-events: none;
+  animation-play-state: paused;
+}
+.card:hover .border-line {
+  animation-play-state: running;
+}
+
+/* Top border chạy ngang */
+.border-line.top {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+
+}
+
+/* Right border chạy dọc xuống */
+.border-line.right {
+  top: -100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+
+
+}
+
+/* Bottom border chạy ngang */
+.border-line.bottom {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+
+
+}
+
+/* Left border chạy dọc lên */
+.border-line.left {
+  bottom: -100%;
+  left: 0;
+  width: 2px;
+  height: 100%;
+
+}
+.card:hover .top {
+  animation: moveTop 2s linear infinite;
+}
+.card:hover .right {
+  animation: moveRight 2s linear infinite;
+  animation-delay: 0.5s;
+}
+.card:hover .bottom {
+  animation: moveBottom 2s linear infinite;
+  animation-delay: 1s;
+}
+.card:hover .left {
+  animation: moveLeft 2s linear infinite;
+  animation-delay: 1.5s;
+}
+
+/* Keyframes cho từng cạnh */
+@keyframes moveTop {
+  0% { left: -100%; }
+  50% { left: 100%; }
+  100% { left: 100%; }
+}
+
+@keyframes moveRight {
+  0% { top: -100%; }
+  50% { top: 100%; }
+  100% { top: 100%; }
+}
+
+@keyframes moveBottom {
+  0% { right: -100%; }
+  50% { right: 100%; }
+  100% { right: 100%; }
+}
+
+@keyframes moveLeft {
+  0% { bottom: -100%; }
+  50% { bottom: 100%; }
+  100% { bottom: 100%; }
+}
+
 
 .image {
   width: 100%;
@@ -50,8 +143,9 @@
 .shortDesc {
   font-size: 0.9rem;
   color: #666;
-  margin-bottom: 12px;
-  flex-grow: 1;
+  margin-bottom: 0px;
+  padding-bottom: 0;
+  flex-grow: 0;
 }
 
 .actions {
@@ -59,6 +153,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 8px;
+  margin-top: auto;
 }
 
 /* Responsive padding + font trên tablet trở xuống */
@@ -121,4 +216,39 @@
 
 .likeBtn:hover {
   background-color: #f9f9f9;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 0px;
+   margin-bottom: 8px;
+  line-height: 1;
+}
+
+.star {
+  color: #f5a623; /* màu vàng */
+  font-size: 16px;
+}
+
+.star.empty {
+  color: #ccc;
+}
+
+.star.half {
+  position: relative;
+  color: #f5a623;
+}
+.star.half::before {
+  content: "★";
+  color: #ccc;
+  position: absolute;
+  left: 0;
+  width: 50%;
+  overflow: hidden;
+}
+.reviewCount {
+  font-size: 14px;
+  color: #444;
 }
