@@ -105,10 +105,23 @@ const ProductCard: React.FC<Props> = ({ product, onUnfavorite }) => {
             <span className="reviewCount">(260)</span>
           </div>
           <div className="actions">
-            <button onClick={handleDetail} className="detailBtn">
+            <button
+              onClick={(e) => {
+                e.stopPropagation(); 
+                handleDetail();
+              }}
+              className="detailBtn"
+            >
               Xem chi tiết
             </button>
-            <button onClick={handleLike} className="likeBtn">
+
+            <button
+              onClick={(e) => {
+                e.stopPropagation(); 
+                handleLike();
+              }}
+              className="likeBtn"
+            >
               {liked ? "💖 Đã thích" : "🤍 Yêu thích"}
             </button>
           </div>
