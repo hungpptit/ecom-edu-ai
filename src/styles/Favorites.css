@@ -1,9 +1,10 @@
 /* Favorites.css */
 
 .favorites-container {
-  padding: 1rem;
+  padding: 100px 1rem 1rem 1rem;
   max-width: 70vw;
-  margin-top: 80px;
+  max-width: 70vw;
+ 
 }
 
 @media (min-width: 1024px) {
