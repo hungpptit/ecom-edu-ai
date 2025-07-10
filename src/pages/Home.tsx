@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState,useRef  } from "react";
 import { type Product } from "../types/product";
 import { products as allProducts } from "../data/products";
 import { fetchSuggestions } from "../api/suggestions";
 import ProductCard from "../components/ProductCard";
 import "../styles/Home.css";
+import SuggestedProducts from "../components/SuggestedProducts";
 // import { useNavigate } from "react-router-dom";
 
 const Home = () => {
@@ -16,6 +17,9 @@ const Home = () => {
   const [viewedProducts, setViewedProducts] = useState<Product[]>([]);
   const [languageFilter, setLanguageFilter] = useState("all");
   const availableLanguages = ["all", "Japanese", "English", "Spanish", "Chinese", "French", "Italian", "German", "Portuguese", "Korean", "Arabic"];
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const suggestedRef = useRef<HTMLDivElement>(null);
+
 
 
   const itemsPerPage = 8;
@@ -27,6 +31,58 @@ const Home = () => {
     currentPage * itemsPerPage
   );
 
+  
+useEffect(() => {
+  const container = scrollRef.current;
+  if (!container) return;
+
+  const handleScroll = () => {
+    const children = Array.from(container.children) as HTMLDivElement[];
+    const containerCenter = container.offsetWidth / 2 + container.scrollLeft;
+
+    children.forEach((child) => {
+      const childCenter = child.offsetLeft + child.offsetWidth / 2;
+      const distance = Math.abs(containerCenter - childCenter);
+
+      // Nếu gần tâm => active
+      if (distance < child.offsetWidth / 2) {
+        child.classList.add("active");
+      } else {
+        child.classList.remove("active");
+      }
+    });
+  };
+
+  handleScroll(); // init
+    container.addEventListener("scroll", handleScroll);
+    return () => container.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const container = suggestedRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      const children = Array.from(container.children) as HTMLDivElement[];
+      const centerX = container.scrollLeft + container.offsetWidth / 2;
+
+      children.forEach((child) => {
+        const childCenter = child.offsetLeft + child.offsetWidth / 2;
+        const distance = Math.abs(centerX - childCenter);
+        const threshold = child.offsetWidth * 0.5;
+
+        if (distance < threshold) {
+          child.classList.add("active");
+        } else {
+          child.classList.remove("active");
+        }
+      });
+    };
+
+  handleScroll(); // khởi động
+    container.addEventListener("scroll", handleScroll);
+    return () => container.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= totalPages) {
@@ -149,7 +205,15 @@ const Home = () => {
     {viewedProducts.length > 0 && (
       <div className="viewed-section">
         <h2 className="section-title">Đã xem gần đây</h2>
-        <div className="viewed-scroll-container">
+
+        <button className="scroll-button left" onClick={() => scrollRef.current?.scrollBy({ left: -300, behavior: "smooth" })}>
+          ◀
+        </button>
+        <button className="scroll-button right" onClick={() => scrollRef.current?.scrollBy({ left: 300, behavior: "smooth" })}>
+          ▶
+        </button>
+
+        <div className="viewed-scroll-container" ref={scrollRef}>
           {viewedProducts.map((product) => (
             <div className="viewed-card" key={`viewed-${product.id}`}>
               <ProductCard product={product} />
@@ -159,20 +223,8 @@ const Home = () => {
       </div>
     )}
 
-
     {/* Gợi ý sản phẩm */}
-    {suggestedProducts && (
-      <div className="suggested-wrapper">
-        <h2 className="section-title">Gợi ý cho bạn</h2>
-        <div className="horizontal-scroll">
-          {suggestedProducts.map((product) => (
-            <div key={`suggest-${product.id}`} className="card-wrapper">
-              <ProductCard product={product} />
-            </div>
-          ))}
-        </div>
-      </div>
-    )}
+    <SuggestedProducts title="Gợi ý cho bạn" products={suggestedProducts || []} />
 
     {/* Danh sách sản phẩm */}
     <div className="mb-6">

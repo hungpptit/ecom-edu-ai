@@ -51,10 +51,61 @@
   max-width: 300px;
   font-size: 1rem;
 }
+.input-field {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 300px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: #fff;
+  color: #333;
+}
+
+.input-field::placeholder {
+  color: #999;
+  transition: color 0.3s;
+}
+
+.input-field:hover {
+  border-color: #888;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #2563eb; 
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3); 
+}
+
+.input-field:focus::placeholder {
+  color: transparent; 
+}
 
 .select-field {
-  min-width: 150px;
-  max-width: 180px;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  min-width: 160px;
+  max-width: 200px;
+  appearance: none; 
+  background-color: white;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%204%205'%3E%3Cpath%20fill='black'%20d='M2%200L0%202h4L2%200zM2%205L0%203h4L2%205z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 0.65em auto;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.select-field:hover {
+  border-color: #888;
+}
+
+.select-field:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
 }
 
 /* Nút gợi ý */
@@ -68,10 +119,12 @@
   border: none;
   font-weight: 500;
   font-size: 1rem;
+  transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 .suggest-btn:hover {
   background-color: #1e40af;
+  transform: scale(1.1);
 }
 
 /* Lỗi gợi ý */
@@ -133,41 +186,67 @@
 }
 
 
-.viewed-section {
-  margin-bottom: 2rem;
-  padding: 1rem;
-  background-color: #f9fafb;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-}
-
-.viewed-section .section-title {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 0.75rem;
-}
-
 .viewed-scroll-container {
   display: flex;
   overflow-x: auto;
   gap: 1rem;
   padding-bottom: 0.5rem;
   scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none; 
+  scroll-snap-type: x mandatory;
+  scroll-padding: 0 1rem;
 }
 
 .viewed-scroll-container::-webkit-scrollbar {
-  height: 6px;
+  display: none; 
 }
 
-.viewed-scroll-container::-webkit-scrollbar-thumb {
-  background-color: #ccc;
-  border-radius: 3px;
+.viewed-section {
+  position: relative;
+}
+
+/* Nút cuộn trái/phải */
+.scroll-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 9999px;
+  padding: 0.4rem 0.6rem;
+  font-size: 1.25rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  z-index: 10;
+}
+
+.scroll-button.left {
+  left: 8px;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.scroll-button.right {
+  right: 8px;
+  background-color: rgba(255, 255, 255, 0.6);
 }
 
 .viewed-card {
   flex: 0 0 auto;
   width: 250px;
   scroll-snap-align: start;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.4s ease;
+}
+.viewed-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  z-index: 2;
+}
+.viewed-card.active {
+  transform: scale(1.05);
+  opacity: 1;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  z-index: 2;
 }
 
 .suggested-wrapper {
@@ -176,8 +255,11 @@
   border-radius: 12px;
   margin-bottom: 2rem;
   border: 1px solid #e5e7eb;
+  scrollbar-width: none
 }
-
+.suggested-wrapper ::-webkit-scrollbar {
+  display: none; 
+}
 .horizontal-scroll {
   display: flex;
   overflow-x: auto;
@@ -220,8 +302,12 @@
 .language-filter-bar {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.8rem;
   margin: 1rem 0;
+  
+}
+.language-filter-bar :hover{
+    transform: scale(1.3);
 }
 
 .lang-btn {
@@ -231,6 +317,7 @@
   border-radius: 999px;
   cursor: pointer;
   font-weight: 500;
+  transition: transform 0.4s ease, background-color 0.4s ease;  
 }
 
 .lang-btn.active {

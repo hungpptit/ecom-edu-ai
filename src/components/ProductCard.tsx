@@ -2,6 +2,8 @@ import { type Product } from "../types/product";
 import "../styles/ProductCard.css";
 import { useState, useEffect } from "react";
 import ProductModal from "./ProductModal";
+import { useNavigate } from "react-router-dom";
+
 
 
 interface Props {
@@ -13,6 +15,7 @@ const ProductCard: React.FC<Props> = ({ product, onUnfavorite }) => {
   const [liked, setLiked] = useState(false);
 
   const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const stored = localStorage.getItem("favorites");
@@ -26,6 +29,7 @@ const ProductCard: React.FC<Props> = ({ product, onUnfavorite }) => {
       }
     }
   }, [product.id]);
+
 
   const handleLike = () => {
     const stored = localStorage.getItem("favorites");
@@ -61,6 +65,9 @@ const ProductCard: React.FC<Props> = ({ product, onUnfavorite }) => {
     localStorage.setItem("viewed", JSON.stringify(viewed));
     setShowModal(true);
   };
+  const handleCardClick = () => {
+    navigate(`/product/${product.id}`);
+  };
   const renderStars = (rating: number) => {
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating - fullStars >= 0.25 && rating - fullStars < 0.75;
@@ -82,7 +89,7 @@ const ProductCard: React.FC<Props> = ({ product, onUnfavorite }) => {
 
   return (
     <>
-      <div className="card">
+      <div className="card" onClick={handleCardClick}>
         <span className="border-line top"></span>
         <span className="border-line right"></span>
         <span className="border-line bottom"></span>
